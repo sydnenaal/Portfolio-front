@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import styles from "./style.module.sass";
+import { useRef } from "react";
 
 const projects = [
   {
@@ -30,6 +31,7 @@ const projects = [
 ];
 
 export default function Home() {
+  const projectsRef = useRef<HTMLHeadingElement>();
   return (
     <>
       <Head>
@@ -72,6 +74,9 @@ export default function Home() {
           </div>
           <div className={styles.arrowDown}>
             <span
+              onClick={() => {
+                projectsRef.current.scrollIntoView({ behavior: "smooth" });
+              }}
               className="material-icons"
               style={{ fontSize: "3vw", cursor: "pointer" }}
             >
@@ -81,7 +86,7 @@ export default function Home() {
         </section>
 
         <section>
-          <div className={styles.projects}>
+          <div className={styles.projects} ref={projectsRef}>
             {projects.map((item, index) => (
               <div className={styles.project} key={index}>
                 <div className={styles.project_icon}>

@@ -37,7 +37,7 @@
             font-family: Gilroy
             font-weight: bold
             font-style: normal
-            animation: fadeIn 2s
+            animation: fadeIn 2.5s
 
         &_titleTwo
             position: absolute
@@ -45,7 +45,7 @@
             font-weight: normal
             font-style: normal
             font-size: 2.5vw
-            animation: fadeIn 1s
+            animation: fadeIn 1.5s
 
     .arrowDown
         width: 100%
@@ -54,6 +54,8 @@
         align-items: center
         justify-content: center
         font-size: 30px
+        animation: jumpUp 1s ease
+        animation-delay: 1.5s
 
     .projects
         width: 100%
@@ -69,6 +71,10 @@
             margin-top: 50px
             margin-bottom: 50px
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.2)
+            transition: box-shadow .7s ease
+
+            &:hover
+                box-shadow: 50px 50px 40px rgba(0, 0, 0, 0.5)
             
             &_icon
                 width: 50%
@@ -106,6 +112,7 @@
                     margin-bottom: 15px
 
                 &__button
+                    cursor: pointer
                     width: 100px
                     height: 40px
                     display: flex
@@ -179,3 +186,14 @@
     100%
         opacity: 1
 
+@keyframes jumpUp
+    0%
+        margin-top: 0px
+    
+    50%
+        margin-top: 10px
+
+    100%
+        margin-top: 0px
+
+        
