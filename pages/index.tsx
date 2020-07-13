@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import styles from "./style.module.sass";
 import ModalContact from "components/contact/modalContact";
+import { getContacts } from "api";
 
 const projects = [
   {
@@ -31,11 +32,32 @@ const projects = [
   },
 ];
 
+interface ContactsType {
+  behance: string;
+  instagram: string;
+  facebook: string;
+  _id: string;
+}
+
 export default function Home() {
   const projectsRef = useRef<HTMLHeadingElement>();
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+  const [contacts, setContacts] = useState<ContactsType>({
+    behance: "",
+    instagram: "",
+    facebook: "",
+    _id: "",
+  });
 
   const handleToggleModal = () => setIsModalOpen((isOpen: Boolean) => !isOpen);
+
+  useEffect(() => {
+    getContacts({
+      successCallback: (res) => {
+        setContacts(res.data);
+      },
+    });
+  }, []);
 
   return (
     <>
@@ -118,9 +140,9 @@ export default function Home() {
           </div>
           <div className={styles.contacts}>
             <div className={styles.contacts_resource}>
-              <span>Behance</span>
-              <span>Instagram</span>
-              <span>Facebook</span>
+              <a href={contacts.behance}>Behance</a>
+              <a href={contacts.instagram}>Instagram</a>
+              <a href={contacts.facebook}>Facebook</a>
             </div>
             <div className={styles.contacts_owner}>
               © Seraphim Vysotsky 2020
