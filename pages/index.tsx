@@ -1,7 +1,8 @@
 import Head from "next/head";
+import { useRef, useState } from "react";
 
 import styles from "./style.module.sass";
-import { useRef } from "react";
+import ModalContact from "components/contact/modalContact";
 
 const projects = [
   {
@@ -32,6 +33,10 @@ const projects = [
 
 export default function Home() {
   const projectsRef = useRef<HTMLHeadingElement>();
+  const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+
+  const handleToggleModal = () => setIsModalOpen((isOpen: Boolean) => !isOpen);
+
   return (
     <>
       <Head>
@@ -58,7 +63,7 @@ export default function Home() {
               <span>HOME</span>
               <span>WORK</span>
               <span>ABOUT</span>
-              <span>CONTACT</span>
+              <span onClick={handleToggleModal}>CONTACT</span>
             </div>
           </div>
           <div className={styles.selfAssLicking}>
@@ -109,7 +114,7 @@ export default function Home() {
         <section>
           <div className={styles.workTogether}>
             <span>Interested in working together?</span>
-            <span>GET IN TOUCH!</span>
+            <span onClick={handleToggleModal}>GET IN TOUCH!</span>
           </div>
           <div className={styles.contacts}>
             <div className={styles.contacts_resource}>
@@ -122,6 +127,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ModalContact isOpen={isModalOpen} handleClose={handleToggleModal} />
       </div>
     </>
   );

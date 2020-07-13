@@ -1,0 +1,120 @@
+.dimmer
+    top: 0
+    position: fixed
+    width: 100%
+    height: 100vh
+    background-color: rgba(0,0,0,0.3)
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .modal
+        width: 40%
+        height: 85%
+        background-color: black
+
+        .title
+            padding-left: 7%
+            padding-right: 7%
+            height: 20%
+            display: flex
+            align-items: center
+            justify-content: space-between
+
+            & span:nth-child(1)
+                color: white
+                font-family: Gilroy
+                font-weight: 600
+                font-style: normal
+                font-size: 2vw
+
+            & span:nth-child(2)
+                font-size: 1.5vw
+                color: grey
+                cursor: pointer
+
+        .form
+            display: flex
+            flex-direction: column
+            padding-left: 7%
+            padding-right: 7%
+
+            & input
+                margin-bottom: 20px
+                background-color: #2c2c2c
+                font-family: Gilroy
+                font-weight: 500
+                font-style: normal
+                color: white
+                border: none
+                height: 35px
+                padding: 10px
+            
+            & textarea
+                max-width: 97,5%
+                min-width: 97,5%
+                min-height: 200px
+                max-height: 250px
+                padding-top: 15px
+                padding-left: 10px
+                margin-bottom: 20px
+                font-family: Gilroy
+                resize: vertical
+                font-weight: 500
+                color: white
+                font-style: normal
+                background-color: #2c2c2c
+                border: none
+
+            & button
+                width: 170px
+                height: 50px
+                font-family: Gilroy
+                font-weight: 500
+                font-style: normal
+                font-size: 14px
+                background-color: black
+                color: white
+                border: 1px solid white
+                cursor: pointer
+
+.fadeIn
+    animation: fadeIn .4s ease
+
+.fadeOut
+    animation: fadeOut .4s ease
+
+.elevateDown
+    animation: elevateDown .5s ease
+
+.elevateUp
+    animation: elevateUp .5s ease
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+        
+    100%
+        opacity: 1
+
+@keyframes fadeOut
+    0%
+        opacity: 1
+        
+    100%
+        opacity: 0
+
+@keyframes elevateDown
+    0%
+        margin-top: -300px
+        
+    100%
+        margin-top: 0px
+
+@keyframes elevateUp
+    0%
+        margin-top: 0px
+        
+    100%
+        margin-top: -300px
+        
