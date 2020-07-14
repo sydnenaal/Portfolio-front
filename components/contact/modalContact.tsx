@@ -30,6 +30,9 @@ export default function ModalContact({ handleClose, isOpen }) {
       data,
       successCallback: () => {
         handleClose();
+        setEmail("");
+        setName("");
+        setText("");
         setIsSubmit(false);
       },
     });

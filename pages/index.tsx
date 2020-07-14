@@ -7,25 +7,25 @@ import { getContacts } from "api";
 
 const projects = [
   {
-    icon: "/assets/images/icon_vdoroge.png",
+    icon: "/assets/images/icon_vdoroge.svg",
     title: "VDoroge",
     text:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt u",
   },
   {
-    icon: "/assets/images/icon_kivot.png",
+    icon: "/assets/images/icon_kivot.svg",
     title: "Kivot",
     text:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, eos?",
   },
   {
-    icon: "/assets/images/icon_soul.png",
+    icon: "/assets/images/icon_soul.svg",
     title: "Soul Lbdv",
     text:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, eos?",
   },
   {
-    icon: "/assets/images/icon_grotesque.png",
+    icon: "/assets/images/icon_grotesque.svg",
     title: "Grotesque",
     text:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, eos?",
@@ -78,7 +78,7 @@ export default function Home() {
         ></link>
       </Head>
       <div className={styles.main}>
-        <section>
+        <section className={styles.firstSection}>
           <div className={styles.header}>
             <div className={styles.header_user}>SERAPHIM VYSOTSKY</div>
             <div className={styles.header_menu}>
@@ -112,12 +112,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
+        <section className={styles.secondSection}>
           <div className={styles.projects} ref={projectsRef}>
             {projects.map((item, index) => (
               <div className={styles.project} key={index}>
                 <div className={styles.project_icon}>
-                  <img src={item.icon} height="50%" alt="project" />
+                  <img
+                    src={item.icon}
+                    height="100%"
+                    color="white"
+                    alt="project"
+                  />
                 </div>
                 <div className={styles.project_info}>
                   <div>
@@ -133,7 +138,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
+        <section className={styles.thirdSection}>
           <div className={styles.workTogether}>
             <span>Interested in working together?</span>
             <span onClick={handleToggleModal}>GET IN TOUCH!</span>
