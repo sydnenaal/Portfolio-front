@@ -2,214 +2,110 @@
     width: 100%
     color: #1f1f1f
 
-    .header
-        height: 7vh
-        width: 100%
+    .secondSection
+        padding-left: 50px
+        padding-right: 50px
+        height: 400px
         display: flex
-        align-items: center
-        justify-content: space-between
+        background-color: #202020
+        box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.2)
 
-        &_user
-            font-family: Gilroy
-            font-weight: normal
-            font-style: normal
-            margin-left: 30px
-            font-size: 20px
-
-        &_menu span
-            cursor: pointer
-            margin-right: 30px
-            font-family: Gilroy
-            font-weight: 600
-            font-style: normal
-            font-size: 20px
-
-    .selfAssLicking
-        width: 100%
-        height: 86vh
-        display: flex
-        align-items: center
-        justify-content: center
-
-        &_titleOne
-            color: #ededed
-            font-size: 10vw
+        &_left
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
             font-family: Gilroy
             font-weight: bold
             font-style: normal
-            animation: fadeIn 2.5s
+            font-size: 60px
+            color: white
 
-        &_titleTwo
-            position: absolute
+        &_right
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
             font-family: Gilroy
-            font-weight: normal
+            font-weight: 200
             font-style: normal
-            font-size: 2.5vw
-            animation: fadeIn 1.5s
+            font-size: 25px
+            color: white
 
-    .arrowDown
-        width: 100%
-        height: 7vh
+            & span
+                width: 550px
+
+    .projectsTitle
+        font-family: Gilroy
+        font-weight: bold
+        font-style: normal
+        font-size: 60px
         display: flex
+        height: 100px
         align-items: center
         justify-content: center
-        font-size: 30px
-        animation: jumpUp 1s ease
-        animation-delay: 1.5s
 
-    .projects
-        width: 100%
-        display: flex
-        flex-direction: column
-        align-items: center
-        margin-bottom: 24vh
 
-        .project
-            width: 70%
-            display: flex
-            height: 49vh
-            margin-top: 50px
-            margin-bottom: 50px
-            box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.2)
-            transition: box-shadow .7s ease
+.process
+    margin-top: 100px
+    margin-bottom: 100px
+    padding-left: 150px
+    padding-right: 150px
 
-            &:hover
-                box-shadow: 50px 50px 40px rgba(0, 0, 0, 0.5)
-            
-            &_icon
-                width: 50%
-                background-color: #202020
-                display: flex
-                align-items: center
-                justify-content: center
-
-                & img
-                    fill: white
-
-            &_info
-                width: 50%
-                display: flex
-                justify-content: center
-                background-color: #dadada 
-                color: black
-
-                & div:nth-child(1)
-                    width: 70%
-                    display: flex
-                    flex-direction: column
-                    align-items: flex-start
-                    justify-content: center
-
-                &__title
-                    font-size: 50px
-                    font-family: Gilroy
-                    font-weight: 900
-                    font-style: normal
-                    margin-bottom: 15px
-
-                &__text
-                    font-size: 15px
-                    font-family: Gilroy
-                    font-weight: normal
-                    font-style: normal
-                    margin-bottom: 15px
-
-                &__button
-                    cursor: pointer
-                    width: 100px
-                    height: 40px
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    font-size: 14px
-                    font-family: Gilroy
-                    font-weight: 600
-                    font-style: normal
-                    background-color: #202020
-                    color: #f7f7f7
-                    will-change: font-size
-                    transition: font-size 0.3s ease
-
-                    &:hover
-                        font-size: 15px
-
-    .workTogether
-        background-color: #202020
-        width: 100%
-        height: 28vh
+    &_title
         display: flex
         flex-direction: column
         align-items: center
         justify-content: center
 
         & span:nth-child(1)
-            color: white
-            font-family: Gilroy
-            font-weight: 500
-            font-style: normal
-            margin-bottom: 20px
-            font-size: 17px
-
-        & span:nth-child(2)
-            cursor: pointer
-            color: white
-            font-size: 50px
             font-family: Gilroy
             font-weight: bold
             font-style: normal
-            letter-spacing: 5.25px
+            font-size: 63px
+            margin-bottom: 10px
 
-    .contacts
-        background-color: #202020
-        width: 100%
-        display: flex
-        align-items: center
-        justify-content: space-between
-        color: white
-        height: 7vh
-
-        &_resource 
-            margin-left: 30px
+        & span:nth-child(2)
             font-family: Gilroy
             font-weight: 500
             font-style: normal
+            font-size: 25px
 
-            & a
-                cursor: pointer
-                margin-right: 30px
-                text-decoration: none
+    &_body
+        display: flex
+        flex-wrap: wrap
 
-                &:active, &:visited
-                    color: white
-                    text-decoration: none
+        &_step
+            width: calc( 50% - 10px )
+            height: 300px
+            padding: 5px
+            display: flex
+            align-items: center
 
-        &_owner
-            margin-right: 30px
-            color: #b1b1b1
-            font-family: Gilroy
-            font-weight: 200
-            font-style: normal
+            &__icon
+                min-width: 140px
+                min-height: 140px
+                height: 140px
+                width: 140px
+                border-radius: 50%
+                border: 8px solid rgba(0,0,0, 0.15)
+                margin: 30px
 
-.projects div:nth-child(2n)
-            flex-direction: row-reverse
+            &__desc
+                display: flex
+                flex-direction: column
+                align-items: flex-start
+                justify-content: center
 
+                & span:nth-child(1)
+                    font-family: Gilroy
+                    font-weight: bold
+                    font-style: normal
+                    font-size: 33px
+                    margin-bottom: 15px
 
-
-@keyframes fadeIn
-    0%
-        opacity: 0
-        
-    100%
-        opacity: 1
-
-@keyframes jumpUp
-    0%
-        margin-top: 0px
-    
-    50%
-        margin-top: 10px
-
-    100%
-        margin-top: 0px
-
-        
+                & span:nth-child(2)
+                    font-family: Gilroy
+                    font-weight: 500
+                    font-style: normal
+                    font-size: 20px

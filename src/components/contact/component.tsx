@@ -1,25 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 
 import { sendMessage } from "api";
+import { setContactState } from "ducks/reducers";
 import styles from "./style.module.sass";
+import { ContactDataType, Actions, Types } from "./types";
+import { selectIsContactShow } from "selectors";
 
-export default function ModalContact({ handleClose, isOpen }) {
+const initialState: ContactDataType = {
+  client: "",
+  email: "",
+  text: "",
+  date: Date.now(),
+  isRead: false,
+  isImportant: false,
+  isDeleted: false,
+};
+
+function reducer(state: ContactDataType, action: Actions): ContactDataType {
+  switch (action.type) {
+    case "SET_NAME":
+      return { ...state, client: action.payload };
+    case "SET_EMAIL":
+      return { ...state, email: action.payload };
+    case "SET_TEXT":
+      return { ...state, text: action.payload };
+    case "CLEAR_STORE":
+      return initialState;
+    default:
+      return state;
+  }
+}
+
+const ModalContact: React.FC = () => {
+  const reduxDispatch = useDispatch();
+  const isOpen = useSelector(selectIsContactShow);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [render, setRender] = useState<Boolean>(isOpen);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [text, setText] = useState<string>("");
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState<Boolean>(false);
 
-  const handleChangeName = (e) => setName(e.target.value);
-  const handleChangeEmail = (e) => setEmail(e.target.value);
-  const handleChangeText = (e) => setText(e.target.value);
+  const handlerAction = (type: Types) => (e) =>
+    dispatch({ type: type, payload: e.target.value });
+  const handleChangeName = handlerAction("SET_NAME");
+  const handleChangeEmail = handlerAction("SET_EMAIL");
+  const handleChangeText = handlerAction("SET_TEXT");
   const handleEndAnimation = () => !isOpen && setRender(false);
+  const handleClose = () => reduxDispatch(setContactState(false));
   const handleSubmit = () => {
-    const data = {
-      client: name,
-      email: email,
-      text: text,
+    const data: ContactDataType = {
+      client: state.client,
+      email: state.email,
+      text: state.text,
       date: Date.now(),
       isRead: false,
       isImportant: false,
@@ -30,9 +63,7 @@ export default function ModalContact({ handleClose, isOpen }) {
       data,
       successCallback: () => {
         handleClose();
-        setEmail("");
-        setName("");
-        setText("");
+        dispatch({ type: "CLEAR_STORE" });
         setIsSubmit(false);
       },
     });
@@ -69,18 +100,18 @@ export default function ModalContact({ handleClose, isOpen }) {
             <div className={styles.form}>
               <input
                 type="text"
-                value={name}
+                value={state.client}
                 onChange={handleChangeName}
                 placeholder="What's your name?"
               />
               <input
                 type="email"
-                value={email}
+                value={state.email}
                 onChange={handleChangeEmail}
                 placeholder="Your Email Address"
               />
               <textarea
-                value={text}
+                value={state.text}
                 onChange={handleChangeText}
                 placeholder="Tell me about your project!"
               />
@@ -93,4 +124,6 @@ export default function ModalContact({ handleClose, isOpen }) {
       )}
     </>
   );
-}
+};
+
+export default ModalContact;

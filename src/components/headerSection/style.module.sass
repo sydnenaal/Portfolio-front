@@ -1,0 +1,49 @@
+.twinTitles
+    margin-top: 7vh
+    width: 100%
+    height: 83vh
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &_titleOne
+        color: #ededed
+        font-size: 10vw
+        font-family: Gilroy
+        font-weight: bold
+        font-style: normal
+        animation: fadeIn 2.5s
+
+    &_titleTwo
+        position: absolute
+        font-family: Gilroy
+        font-weight: normal
+        font-style: normal
+        font-size: 2.5vw
+        animation: fadeIn 1.5s
+.arrowDown
+    width: 100%
+    height: 10vh
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 40px
+    animation: jumpUp 1s ease
+    animation-delay: 1.5s
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+        
+    100%
+        opacity: 1
+
+@keyframes jumpUp
+    0%
+        margin-top: 0px
+    
+    50%
+        margin-top: 20px
+
+    100%
+        margin-top: 0px
