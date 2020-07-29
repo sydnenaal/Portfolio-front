@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRef } from "react";
 
 import styles from "./style.module.sass";
-import { FirstSection, Footer, ProjectsSection } from "components";
+import { FirstSection, Footer, ProjectsSection, Header } from "components";
 
 const Home: React.FC = () => {
   const projectsRef = useRef<HTMLHeadingElement>();
@@ -26,6 +26,7 @@ const Home: React.FC = () => {
         ></link>
       </Head>
       <div className={styles.main}>
+        <Header />
         <FirstSection
           bottomSectionRef={projectsRef}
           backgroundTitle="Case Studies"
