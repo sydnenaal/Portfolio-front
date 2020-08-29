@@ -4,13 +4,13 @@ import { useRef } from "react";
 import styles from "./style.module.sass";
 import { FirstSection, Footer, ProjectsSection, Header } from "components";
 
-const Home: React.FC = () => {
+const Work: React.FC = () => {
   const projectsRef = useRef<HTMLHeadingElement>();
 
   return (
     <>
       <Head>
-        <title>Home page</title>
+        <title>Work page</title>
         <link
           rel="stylesheet"
           type="text/css"
@@ -40,4 +40,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Work;

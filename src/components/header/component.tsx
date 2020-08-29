@@ -3,14 +3,21 @@ import { useDispatch } from "react-redux";
 import styles from "./style.module.sass";
 import { setContactState } from "ducks/reducers";
 
-const Header: React.FC = () => {
+type Props = {
+  background?: string;
+};
+
+const Header: React.FC<Props> = ({ background }) => {
   const dispatch = useDispatch();
 
   const handleToggleModal = () => dispatch(setContactState(true));
 
   return (
     <>
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        style={{ backgroundColor: background || "white" }}
+      >
         <div className={styles.header_user}>SERAPHIM VYSOTSKY</div>
         <div className={styles.header_menu}>
           <a href="/">HOME</a>
