@@ -2,7 +2,7 @@
 
 Деплой проекта на Heroku: https://portfolio-face.herokuapp.com/
 
-Стек технологий:
+### Стек технологий:
 - Next.js
 - React.js
 - TypeScript
