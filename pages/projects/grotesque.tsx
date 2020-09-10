@@ -4,13 +4,13 @@ import { useRef } from "react";
 import styles from "./style.module.sass";
 import { Header, Footer } from "components";
 
-const ProjectGrotesque: React.FC = () => {
+function ProjectGrotesque() {
   const secondSectionRef = useRef<HTMLHeadingElement>();
-
   const chevronStyles = { fontSize: "4vw", cursor: "pointer" };
-  const handleClickChevronBottom = () => {
+
+  function handleClickChevronBottom() {
     secondSectionRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
   return (
     <>
@@ -113,6 +113,6 @@ const ProjectGrotesque: React.FC = () => {
       </div>
     </>
   );
-};
+}
 
 export default ProjectGrotesque;

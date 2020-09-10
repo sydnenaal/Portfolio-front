@@ -4,7 +4,7 @@ import { useRef } from "react";
 import styles from "./style.module.sass";
 import { FirstSection, Footer, ProjectsSection, Header } from "components";
 
-const Home: React.FC = () => {
+function Home() {
   const secondSectionRef = useRef<HTMLHeadingElement>();
 
   return (
@@ -102,6 +102,6 @@ const Home: React.FC = () => {
       </div>
     </>
   );
-};
+}
 
 export default Home;

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import styles from "./style.module.sass";
 import { FirstSection, Footer, ProjectsSection, Header } from "components";
 
-const Work: React.FC = () => {
+function Work() {
   const projectsRef = useRef<HTMLHeadingElement>();
 
   return (
@@ -38,6 +38,6 @@ const Work: React.FC = () => {
       </div>
     </>
   );
-};
+}
 
 export default Work;

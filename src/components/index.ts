@@ -1,4 +1,5 @@
-export { default as Header } from "./header/component";
-export { default as Footer } from "./footer/component";
-export { default as FirstSection } from "./headerSection/component";
-export { default as ProjectsSection } from "./projectsSection/component";
+export { default as Header } from "./header";
+export { default as Footer } from "./footer";
+export { default as FirstSection } from "./headerSection";
+export { default as ProjectsSection } from "./projectsSection";
+export { default as ModalContact } from "./contact";

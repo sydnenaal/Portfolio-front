@@ -1,7 +1,8 @@
 import { queryWrapper } from "api";
 
-export const incrementVisits = () =>
-  queryWrapper({
+export function incrementVisits() {
+  return queryWrapper({
     url: "https://sydnenaal-portfolio.herokuapp.com/api/public/statistic",
     method: "get",
   });
+}

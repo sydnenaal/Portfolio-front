@@ -5,7 +5,7 @@ import thunk from "redux-thunk";
 
 import { incrementVisits } from "api";
 import { rootReducer } from "ducks";
-import ModalContact from "components/contact/component";
+import { ModalContact } from "components";
 
 incrementVisits();
 
@@ -19,7 +19,7 @@ type Props = {
   pageProps: any;
 };
 
-const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
+function MyApp({ Component, pageProps }: Props) {
   return (
     <>
       <Provider store={store}>
@@ -28,6 +28,6 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
       </Provider>
     </>
   );
-};
+}
 
 export default MyApp;

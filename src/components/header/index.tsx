@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "./style.module.sass";
@@ -7,17 +8,17 @@ type Props = {
   background?: string;
 };
 
-const Header: React.FC<Props> = ({ background }) => {
+function Header({ background }: Props) {
   const dispatch = useDispatch();
+  const style = { backgroundColor: background || "white" };
 
-  const handleToggleModal = () => dispatch(setContactState(true));
+  function handleToggleModal(): void {
+    dispatch(setContactState(true));
+  }
 
   return (
     <>
-      <div
-        className={styles.header}
-        style={{ backgroundColor: background || "white" }}
-      >
+      <div className={styles.header} style={style}>
         <div className={styles.header_user}>SERAPHIM VYSOTSKY</div>
         <div className={styles.header_menu}>
           <a href="/">HOME</a>
@@ -28,6 +29,6 @@ const Header: React.FC<Props> = ({ background }) => {
       </div>
     </>
   );
-};
+}
 
-export default Header;
+export default memo(Header);

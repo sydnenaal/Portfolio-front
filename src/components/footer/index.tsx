@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "./style.module.sass";
@@ -12,24 +12,28 @@ interface ContactsType {
   _id: string;
 }
 
-const Footer: React.FC = () => {
+const contactsMock: ContactsType = {
+  behance: "",
+  instagram: "",
+  facebook: "",
+  _id: "",
+};
+
+function Footer() {
   const dispatch = useDispatch();
+  const [contacts, setContacts] = useState<ContactsType>(contactsMock);
+  const { behance, instagram, facebook } = contacts;
 
-  const [contacts, setContacts] = useState<ContactsType>({
-    behance: "",
-    instagram: "",
-    facebook: "",
-    _id: "",
-  });
-
-  const handleToggleModal = () => dispatch(setContactState(true));
+  function handleToggleModal(): void {
+    dispatch(setContactState(true));
+  }
 
   useEffect(() => {
-    getContacts({
-      successCallback: (res) => {
-        setContacts(res.data);
-      },
-    });
+    function handleSuccess(res: any): void {
+      setContacts(res.data);
+    }
+
+    getContacts({ successCallback: handleSuccess });
   }, []);
 
   return (
@@ -40,14 +44,14 @@ const Footer: React.FC = () => {
       </div>
       <div className={styles.contacts}>
         <div className={styles.contacts_resource}>
-          <a href={contacts.behance}>Behance</a>
-          <a href={contacts.instagram}>Instagram</a>
-          <a href={contacts.facebook}>Facebook</a>
+          <a href={behance}>Behance</a>
+          <a href={instagram}>Instagram</a>
+          <a href={facebook}>Facebook</a>
         </div>
         <div className={styles.contacts_owner}>© Seraphim Vysotsky 2020</div>
       </div>
     </section>
   );
-};
+}
 
-export default Footer;
+export default memo(Footer);

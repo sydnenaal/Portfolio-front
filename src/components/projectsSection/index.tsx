@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { projects } from "constants/projects";
 import styles from "./style.module.sass";
 
@@ -5,7 +7,7 @@ type Props = {
   reference?: any;
 };
 
-const ProjectsSection: React.FC<Props> = ({ reference }) => {
+function ProjectsSection({ reference }: Props) {
   return (
     <section className={styles.secondSection}>
       <div className={styles.projects} ref={reference}>
@@ -26,6 +28,6 @@ const ProjectsSection: React.FC<Props> = ({ reference }) => {
       </div>
     </section>
   );
-};
+}
 
-export default ProjectsSection;
+export default memo(ProjectsSection);

@@ -8,25 +8,9 @@ export type ContactDataType = {
   isDeleted: boolean;
 };
 
-type SetName = {
-  readonly type: Types;
-  readonly payload: string;
+export type Action = {
+  readonly type: Type;
+  readonly payload?: string;
 };
 
-type SetEmail = {
-  readonly type: Types;
-  readonly payload: string;
-};
-
-type SetText = {
-  readonly type: Types;
-  readonly payload: string;
-};
-
-type ClearStore = {
-  readonly type: Types;
-  readonly payload?: null;
-};
-
-export type Types = "SET_NAME" | "SET_EMAIL" | "SET_TEXT" | "CLEAR_STORE";
-export type Actions = SetName | SetEmail | SetText | ClearStore;
+export type Type = "client" | "email" | "text" | "clear" | "";

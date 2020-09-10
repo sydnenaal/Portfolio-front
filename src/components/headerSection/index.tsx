@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import styles from "./style.module.sass";
 
 type Props = {
@@ -6,15 +8,16 @@ type Props = {
   forwardTitle: string;
 };
 
-const HeaderSection: React.FC<Props> = ({
+function HeaderSection({
   bottomSectionRef,
   backgroundTitle,
   forwardTitle,
-}) => {
+}: Props) {
   const chevronStyles = { fontSize: "4vw", cursor: "pointer" };
-  const handleClickChevronBottom = () => {
+
+  function handleClickChevronBottom(): void {
     bottomSectionRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
   return (
     <section className={styles.firstSection}>
@@ -37,6 +40,6 @@ const HeaderSection: React.FC<Props> = ({
       </div>
     </section>
   );
-};
+}
 
-export default HeaderSection;
+export default memo(HeaderSection);
