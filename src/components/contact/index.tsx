@@ -8,7 +8,21 @@ import { sendMessage } from "api";
 import { useFadeAnimation, useForm } from "hooks";
 import { setContactState } from "ducks/reducers";
 import styles from "./style.module.sass";
-import { ContactDataType, Action } from "./types";
+
+type ActionType = "client" | "email" | "text" | "clear" | "";
+
+type Action = {
+  readonly type: ActionType;
+  readonly payload?: string;
+};
+
+type ContactDataType = {
+  [name: string]: {
+    value: string;
+    validationRule: string;
+    error: string;
+  };
+};
 
 const initialState: ContactDataType = {
   client: { value: "", validationRule: "notNull", error: "" },
