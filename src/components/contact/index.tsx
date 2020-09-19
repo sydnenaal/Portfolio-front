@@ -1,55 +1,37 @@
-import { useState, useReducer, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, memo } from "react";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
 
+import { selectIsContactShow } from "selectors";
 import { sendMessage } from "api";
-import { useFadeAnimation } from "hooks";
+import { useFadeAnimation, useForm } from "hooks";
 import { setContactState } from "ducks/reducers";
 import styles from "./style.module.sass";
 import { ContactDataType, Action } from "./types";
-import { selectIsContactShow } from "selectors";
 
 const initialState: ContactDataType = {
-  client: "",
-  email: "",
-  text: "",
-  date: Date.now(),
-  isRead: false,
-  isImportant: false,
-  isDeleted: false,
+  client: { value: "", validationRule: "notNull", error: "" },
+  email: { value: "", validationRule: "notNull", error: "" },
+  text: { value: "", validationRule: "notNull", error: "" },
 };
 
-function reducer(state: ContactDataType, action: Action): ContactDataType {
-  const { type, payload } = action;
-
-  if (!type) {
-    return state;
-  }
-
-  if (type === "clear") {
-    return initialState;
-  }
-
-  return { ...state, [type]: payload };
+function handleBlockClick(e: React.MouseEvent): void {
+  e.stopPropagation();
 }
 
 function ModalContact() {
+  console.info("-= Render ModalContact =-");
+
   const reduxDispatch = useDispatch();
-  const isOpen = useSelector(selectIsContactShow);
+  const isOpen: boolean = useSelector(selectIsContactShow);
   const { render, handleEndAnimation } = useFadeAnimation(isOpen);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, validate, dispatch } = useForm(initialState);
   const [isSubmit, setIsSubmit] = useState<Boolean>(false);
   const { dimmer, fadeIn, fadeOut, modal, elevateDown, elevateUp } = styles;
-  const dimmerClasses = clsx({
-    [dimmer]: true,
-    [fadeIn]: isOpen,
-    [fadeOut]: !isOpen,
-  });
-  const modalClasses = clsx({
-    [modal]: true,
-    [elevateDown]: isOpen,
-    [elevateUp]: !isOpen,
-  });
+  const { client, email, text } = state;
+  const dimmerClasses = clsx([dimmer, isOpen ? fadeIn : fadeOut]);
+  const modalClasses = clsx([modal, isOpen ? elevateDown : elevateUp]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const action: Action = { type: this.type, payload: e.target.value };
@@ -61,15 +43,8 @@ function ModalContact() {
     reduxDispatch(setContactState(false));
   }
 
-  function handleBlockClick(e: React.MouseEvent): void {
-    e.stopPropagation();
-  }
-
   function handleSubmit(): void {
-    const messageData = {
-      data: state,
-      successCallback: handleSuccess,
-    };
+    const isValid = validate();
 
     function handleSuccess(): void {
       handleClose();
@@ -77,8 +52,15 @@ function ModalContact() {
       setIsSubmit(false);
     }
 
-    setIsSubmit(true);
-    sendMessage(messageData);
+    if (isValid) {
+      const messageData = {
+        data: state,
+        successCallback: handleSuccess,
+      };
+
+      setIsSubmit(true);
+      sendMessage(messageData);
+    }
   }
 
   return (
@@ -87,9 +69,9 @@ function ModalContact() {
         <div
           className={dimmerClasses}
           onAnimationEnd={handleEndAnimation}
-          onClick={handleClose}
+          onMouseDown={handleClose}
         >
-          <div className={modalClasses} onClick={handleBlockClick}>
+          <div className={modalClasses} onMouseDown={handleBlockClick}>
             <div className={styles.title}>
               <span>Hello! let's work together.</span>
               <span onClick={handleClose}>&#10006;</span>
@@ -97,18 +79,18 @@ function ModalContact() {
             <div className={styles.form}>
               <input
                 type="text"
-                value={state.client}
+                value={client.value}
                 onChange={handleChange.bind({ type: "client" })}
                 placeholder="What's your name?"
               />
               <input
                 type="email"
-                value={state.email}
+                value={email.value}
                 onChange={handleChange.bind({ type: "email" })}
                 placeholder="Your Email Address"
               />
               <textarea
-                value={state.text}
+                value={text.value}
                 onChange={handleChange.bind({ type: "text" })}
                 placeholder="Tell me about your project!"
               />

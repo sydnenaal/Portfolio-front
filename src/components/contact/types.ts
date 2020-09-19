@@ -1,11 +1,9 @@
 export type ContactDataType = {
-  client: string;
-  email: string;
-  text: string;
-  date: number;
-  isRead: boolean;
-  isImportant: boolean;
-  isDeleted: boolean;
+  [name: string]: {
+    value: string;
+    validationRule: string;
+    error: string;
+  };
 };
 
 export type Action = {
