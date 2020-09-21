@@ -1,9 +1,6 @@
-import { queryWrapper } from "api";
+import { ApiParams } from "./";
 
-export function getContacts({ successCallback }) {
-  return queryWrapper({
-    url: "/contacts",
-    method: "get",
-    successCallback: successCallback,
-  });
-}
+export const getContacts: ApiParams = {
+  url: "/contacts",
+  method: "get",
+};

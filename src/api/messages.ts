@@ -1,11 +1,6 @@
-import { queryWrapper } from "api";
+import { ApiParams } from "./";
 
-export function sendMessage({ data, successCallback }) {
-  return queryWrapper({
-    url:
-      "https://sydnenaal-portfolio.herokuapp.com/api/public/messages/message",
-    method: "put",
-    data: { data },
-    successCallback: successCallback,
-  });
-}
+export const sendMessage: ApiParams = {
+  url: "https://sydnenaal-portfolio.herokuapp.com/api/public/messages/message",
+  method: "put",
+};

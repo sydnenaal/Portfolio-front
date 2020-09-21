@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -6,8 +7,7 @@ import thunk from "redux-thunk";
 import { incrementVisits } from "api";
 import { rootReducer } from "ducks";
 import { ModalContact } from "components";
-
-incrementVisits();
+import { useRequest } from "hooks";
 
 const store = createStore(
   rootReducer,
@@ -20,6 +20,12 @@ type Props = {
 };
 
 function MyApp({ Component, pageProps }: Props) {
+  const queryWrapper = useRequest();
+
+  useEffect(() => {
+    queryWrapper(incrementVisits);
+  }, [queryWrapper]);
+
   return (
     <>
       <Provider store={store}>

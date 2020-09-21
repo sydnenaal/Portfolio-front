@@ -1,8 +1,6 @@
-import { queryWrapper } from "api";
+import { ApiParams } from "./";
 
-export function incrementVisits() {
-  return queryWrapper({
-    url: "https://sydnenaal-portfolio.herokuapp.com/api/public/statistic",
-    method: "get",
-  });
-}
+export const incrementVisits: ApiParams = {
+  url: "https://sydnenaal-portfolio.herokuapp.com/api/public/statistic",
+  method: "get",
+};

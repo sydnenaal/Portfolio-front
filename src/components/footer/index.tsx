@@ -3,24 +3,24 @@ import { useDispatch } from "react-redux";
 
 import styles from "./style.module.sass";
 import { getContacts } from "api";
+import { useRequest } from "hooks";
 import { setContactState } from "ducks/reducers";
 
 interface ContactsType {
   behance: string;
   instagram: string;
   facebook: string;
-  _id: string;
 }
 
 const contactsMock: ContactsType = {
   behance: "",
   instagram: "",
   facebook: "",
-  _id: "",
 };
 
 function Footer() {
   const dispatch = useDispatch();
+  const queryWrapper = useRequest();
   const [contacts, setContacts] = useState<ContactsType>(contactsMock);
   const { behance, instagram, facebook } = contacts;
 
@@ -33,7 +33,7 @@ function Footer() {
       setContacts(res.data);
     }
 
-    getContacts({ successCallback: handleSuccess });
+    queryWrapper(getContacts, handleSuccess);
   }, []);
 
   return (

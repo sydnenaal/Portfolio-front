@@ -1,11 +1,10 @@
 import { useState, memo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
-import { useSelector } from "react-redux";
 
 import { selectIsContactShow } from "selectors";
 import { sendMessage } from "api";
-import { useFadeAnimation, useForm } from "hooks";
+import { useFadeAnimation, useForm, useRequest } from "hooks";
 import { setContactState } from "ducks/reducers";
 import styles from "./style.module.sass";
 
@@ -35,9 +34,8 @@ function handleBlockClick(e: React.MouseEvent): void {
 }
 
 function ModalContact() {
-  console.info("-= Render ModalContact =-");
-
   const reduxDispatch = useDispatch();
+  const queryWrapper = useRequest();
   const isOpen: boolean = useSelector(selectIsContactShow);
   const { render, handleEndAnimation } = useFadeAnimation(isOpen);
   const { state, validate, dispatch } = useForm(initialState);
@@ -67,13 +65,11 @@ function ModalContact() {
     }
 
     if (isValid) {
-      const messageData = {
-        data: state,
-        successCallback: handleSuccess,
-      };
+      const data = { ...state };
+      const params = { ...sendMessage, body: { data } };
 
       setIsSubmit(true);
-      sendMessage(messageData);
+      queryWrapper(params, handleSuccess);
     }
   }
 
