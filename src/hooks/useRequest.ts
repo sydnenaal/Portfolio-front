@@ -9,6 +9,9 @@ interface QueryArgs {
   };
 }
 
+//TODO: подключить node.env
+const appHost = "https://sydnenaal-portfolio.herokuapp.com/";
+
 function useRequest() {
   const { cancel, token }: CancelTokenSource = useMemo(
     axios.CancelToken.source,
@@ -22,7 +25,8 @@ function useRequest() {
     successCallback?: (res: any) => void
   ) {
     try {
-      const paramsWithToken = { ...params, cancelToken: token };
+      const url = `${appHost}api/public/${params.url}`;
+      const paramsWithToken = { ...params, url, cancelToken: token };
       const response = await axios(paramsWithToken);
 
       if (successCallback) {
